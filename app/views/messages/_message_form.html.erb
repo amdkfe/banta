@@ -1,0 +1,7 @@
+
+<div>
+<%= form_with url: room_messages_path(@room), method: :post, local: false, id:"form_input" do |f|%>
+  <%= f.text_area :content, autofocus:true, id: "textarea" %><br />
+  <%= f.submit 'Send' %>
+<% end %>
+</div>

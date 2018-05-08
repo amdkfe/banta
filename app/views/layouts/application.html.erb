@@ -13,7 +13,14 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
     
+
     <%= link_to "All Rooms", root_path %>
 
     <% if current_user %>
@@ -24,6 +31,7 @@
       <%= link_to "Login", new_user_session_path %>
     <% end %>
     <br>
+
 
     <%= yield %>
   </body>

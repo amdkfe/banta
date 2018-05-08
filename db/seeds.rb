@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(username: "ahmad", password: "aaaaaa", email: 'a@a.com')
-User.create!(username: "sara",   password: "ssssss", email: 's@s.com')
+User.create!(username: "ahmad", password: "aaaaaa", email: 'ab@a.com')
+User.create!(username: "sara",   password: "ssssss", email: 'ss@s.com')
 
 Room.create!(name: "Arsenal")
 Room.create!(name: "Juventus")
@@ -19,3 +19,9 @@ Room.create!(name: "Liverpool")
 Room.create!(name: "Real Madrid")
 Room.create!(name: "Manchester City")
 Room.create!(name: "Ac Milan")
+
+
+Message.create!(content: "hello world 1", room_id: "1", user_id: "1")
+Message.create!(content: "hello world 2", room_id: "2", user_id: "2")
+Message.create!(content: "hello world 3", room_id: "3", user_id: "3")
+Message.create!(content: "hello world 4", room_id: "4", user_id: "4")
