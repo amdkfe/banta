@@ -1,0 +1,14 @@
+
+<div class="message_area">
+  <% @messages.each do |m| %>
+    <div class="message <% if m.user==current_user%>my_message<% else %>their_message<% end %>">
+      <div class="inner" id="<%=m.id%>">
+        <%= m.user.username.capitalize %>
+        <span class="date"><%= time_ago_in_words(m.created_at) %> ago:
+        </span>
+      </div>
+    </div>
+    <%= m.content %>
+    <br>
+  <% end %>
+</div>

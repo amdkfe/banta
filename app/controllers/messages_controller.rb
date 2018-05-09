@@ -4,6 +4,14 @@ class MessagesController < ApplicationController
 
   def index
 
+    @room = Room.find(params[:room_id])
+
+        if params[:since]
+      @messages = @room.messages.where("date_trunc('second', created_at) > ?", Time.parse(params[:since]))
+    else
+      @messages = @room.messages.all
+    end
+
   end
 
   def new

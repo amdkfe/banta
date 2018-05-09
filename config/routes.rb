@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   root to: "rooms#index"
 
   resources :rooms do
-    resources :messages, only: [:create]
+    # resources :messages, only: [:create]
+    post :messages, to: 'messages#create'
+    get :messages, to: 'messages#index'
   end
   
 end
