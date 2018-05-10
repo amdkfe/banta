@@ -1,13 +1,17 @@
 
-<div id="roomList">
-  <ul class="rooms">
-  </ul>
-</div>
+<div class="grid-container">
+  <div id="roomList">
+    <ul class="rooms">
+    </ul>
+  </div>
 
-<div id="messageView">
-</div>
+  <div id="messageView">
+    <ul class="m">
+    </ul>
+  </div>
 
-<div id="newMessage">
+  <div id="newMessage">
+  </div>
 </div>
 
 
@@ -46,12 +50,13 @@ class RoomList{
 
 //message content
 class MessageList {
-  constructor(sel) {
+  constructor(sel, room_id) {
     this.messageview = document.querySelector(sel);
+    this.room_id = room_id;
     this.getMessages(this.render.bind(this));
   }
   getMessages(cb){
-  fetch('/rooms/2/messages.json', {credentials: 'include'})
+  fetch('/rooms/' + this.room_id + '/messages.json', {credentials: 'include'})
     .then(function(response) {
       return response.json();
     })
@@ -60,8 +65,12 @@ class MessageList {
     });
   }
   render(list){
+    var mList = this.messageview.querySelector('.m');
+    mList.innerHTML = '';
     for(let i=0; i<list.length; i++){
-      messageView.innerHTML = list[i].content;
+      var link = document.createElement('p');
+      link.innerHTML = list[i].content;
+      mList.appendChild(link);
     }
   }
 }
@@ -70,7 +79,7 @@ class MessageList {
 var roomList = new RoomList('#roomList');
 
 roomList.onRoomSelected = function(id){
-var messagebox = new MessageList('#messageView');
+  var messagebox = new MessageList('#messageView', id);
 };
 
 
