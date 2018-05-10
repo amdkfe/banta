@@ -1,6 +1,78 @@
 
-<% @rooms.each do |room| %>
-  <div>
-    <%= link_to("#{room.name}", room_path(room)) %>
-  </div>
-<% end %>
+<div id="roomList">
+  <ul class="rooms">
+  </ul>
+</div>
+
+<div id="messageView">
+</div>
+
+<div id="newMessage">
+</div>
+
+
+<script>
+
+//room list section
+class RoomList{
+  constructor(sel){
+    this.el = document.querySelector(sel);
+    this.getRooms(this.render.bind(this));
+  }
+  getRooms(cb){
+    fetch('/rooms.json', {credentials: 'include'})
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(json) {
+        cb(json)
+      });
+  }
+  render(list){
+    var roomList = this.el.querySelector('.rooms');
+    for(let i=0; i<list.length; i++){
+      var li = document.createElement('li');
+      var link = document.createElement('a');
+      link.innerHTML = list[i].name;
+      li.appendChild(link);
+      roomList.appendChild(li);
+      li.addEventListener('click', () => {
+        this.onRoomSelected(list[i].id);
+      });
+    }
+  }
+}
+
+
+//message content
+class MessageList {
+  constructor(sel) {
+    this.messageview = document.querySelector(sel);
+    this.getMessages(this.render.bind(this));
+  }
+  getMessages(cb){
+  fetch('/rooms/2/messages.json', {credentials: 'include'})
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(json) {
+      cb(json)
+    });
+  }
+  render(list){
+    for(let i=0; i<list.length; i++){
+      messageView.innerHTML = list[i].content;
+    }
+  }
+}
+
+
+var roomList = new RoomList('#roomList');
+
+roomList.onRoomSelected = function(id){
+var messagebox = new MessageList('#messageView');
+};
+
+
+</script>
+
