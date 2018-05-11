@@ -4,6 +4,9 @@
     <title>Banta</title>
     <%= csrf_meta_tags %>
 
+     
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,28 +14,56 @@
   
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+<!--     <p class="notice"><%= notice %></p> -->
+    <!-- <p class="alert"><%= alert %></p>  -->
 
 
-    <div class="container">
+    
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
-    
+    <div class="page">
+  <div class="vertical-menu">
+        <div class = "logo">B</div>
 
-    <%= link_to "All Rooms", root_path %>
+        <div class = "icons">
 
-    <% if current_user %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-      <%= link_to "#{current_user.username.capitalize}\'s profile", user_path(current_user) %>
-    <% else %>
-      <%= link_to "Register", new_user_registration_path %>
-      <%= link_to "Login", new_user_session_path %>
-    <% end %>
-    <br>
+        <% if current_user %>
+          <%= link_to user_path(current_user) do %>
+            <%= fa_icon "user" %>
+          <% end %>
 
 
-    <%= yield %>
+<!--   <%= link_to "#{current_user.username.capitalize}\'s profile", user_path(current_user) %> -->
+<!--   <%= link_to "All Rooms", root_path %> -->
+
+
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <%= fa_icon "sign-out" %>
+          <% end %>
+
+<!--           <%= link_to '<i class="fas fa-adjust"></i>'.html_safe, destroy_user_session_path, method: :delete %>
+ -->        
+        <% else %>
+
+
+
+          <%= link_to new_user_session_path do %>
+            <%= fa_icon "sign-in" %>
+          <% end %>
+
+
+
+        <% end %>
+        <br>
+      </div>
+  </div>
+
+
+
+
+
+      <%= yield %>
+    </div>
   </body>
 </html>

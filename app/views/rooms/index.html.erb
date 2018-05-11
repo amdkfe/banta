@@ -1,21 +1,27 @@
 
-<div class="grid-container">
-  <div id="roomList">
-    <ul class="rooms">
-    </ul>
+  <div class="container">
+
+    <div id="roomList">
+      <ul class="rooms">
+      </ul>
+    </div>
+
+    <div id="messageView">
+      <ul class="messages">
+      </ul>
+      <div id="newMessage">
+        <input type="text" id="myText" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
   </div>
 
-  <div id="messageView">
-    <ul class="m">
-    </ul>
-  </div>
 
-  <div id="newMessage">
-  </div>
-</div>
 
 
 <script>
+
+
 
 //room list section
 class RoomList{
@@ -65,11 +71,13 @@ class MessageList {
     });
   }
   render(list){
-    var mList = this.messageview.querySelector('.m');
+    var mList = this.messageview.querySelector('.messages');
     mList.innerHTML = '';
     for(let i=0; i<list.length; i++){
-      var link = document.createElement('p');
+     // var span = document.createElement('span');
+      var link = document.createElement('li');
       link.innerHTML = list[i].content;
+      // link.appendChild(span);
       mList.appendChild(link);
     }
   }
@@ -77,10 +85,40 @@ class MessageList {
 
 
 var roomList = new RoomList('#roomList');
-
+var currentRoom;
 roomList.onRoomSelected = function(id){
+  currentRoom = id;
   var messagebox = new MessageList('#messageView', id);
 };
+
+
+// sending messages
+function sendMessage() {
+    var data = {content: document.getElementById("myText").value};
+    // document.getElementById("messages").innerHTML = data;
+    console.log(data);
+
+  // construct an HTTP request
+  var xhr = new XMLHttpRequest();
+
+  let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+  xhr.open('POST', '/rooms/' + currentRoom + '/messages.json', true);
+  xhr.setRequestHeader('X-CSRF-Token', token);
+  xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+  // send the collected data as JSON
+  xhr.send(JSON.stringify(data));
+
+  xhr.onloadend = function () {
+    // done
+  };
+
+
+
+
+}
+
 
 
 </script>
