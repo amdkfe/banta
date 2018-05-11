@@ -16,6 +16,9 @@
 
  /*border: #b3b3b3;*/
 
+ /*@import 'font-awesome.css'*/
+
+
 * {
   width: 100%;
   margin : 0;
@@ -31,6 +34,13 @@ body{
   grid-template-columns:  10% auto;
 }
 
+.icons {
+  font-size: 2em;
+  text-align: center;
+  vertical-align: baseline;
+
+}
+
 .vertical-menu {
     grid-column: 1;
     color: white;
@@ -43,13 +53,17 @@ body{
     background-color: #549F93;
     overflow-x: hidden;
     padding-top: 20px;
+      vertical-align: baseline;
 }
 
 .vertical-menu a {
     color: white;
     display: block;
-    padding: 12px;
+    padding-top: 20px;
+/*  padding: 12px;*/
     text-decoration: none;
+    vertical-align: baseline;
+    padding-bottom: 20px;
 }
 
 .vertical-menu a:hover {
@@ -143,6 +157,28 @@ body{
 
     width: 90%;
 
+}
+
+.messages p{
+  /*  background-color: beige;
+    border: 0px solid gray;*/
+    margin: 10px;
+    padding: 10px;
+/*    margin-left: -40px;*/
+}
+
+.messages p .their_message{
+  float: right;
+  margin-left: 20px;
+
+}
+
+.messages span{
+    background-color: beige;
+    border: 0px solid gray;
+    margin: 10px;
+    padding: 10px;
+    margin-left: -40px;
 }
 
 
