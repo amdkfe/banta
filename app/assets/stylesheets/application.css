@@ -131,7 +131,7 @@ body{
 #newMessage {
   height: 20%;
   position: sticky;
-  bottom: 0;
+  bottom: -1px;
   width: 98%;
   /*border-top: 1px solid #b3b3b3;*/
   z-index: 2;
@@ -147,39 +147,58 @@ body{
   list-style-type: none;
 }
 
+ul .messages{
+  width: 80%;
+}
+
 .messages {
-  width: 100%;
+  width: 92%;
   min-height: 80%;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  list-style-type: none;
+
 }
-.messages,ul,p{
+/*.messages,ul,li{
 
     width: 90%;
 
-}
+}*/
 
-.messages p{
-  /*  background-color: beige;
-    border: 0px solid gray;*/
-    margin: 10px;
+.messages li{
+    background-color: beige;
+    border: 0px solid gray;
+    margin: 4px;
     padding: 10px;
-/*    margin-left: -40px;*/
+    color: #303030;
+    /*margin-left: -40px;*/
+    display: inline-block;
+    list-style-type: none;
+    min-width: 240px;
+    min-height: 13px;
+
+    /*font-size: 0.9em;*/
+    margin-left: -40px;
 }
 
-.messages p .their_message{
+.rooms li{
+  margin-top: 8px;
+  }
+
+/*.messages li .their_message{
   float: right;
   margin-left: 20px;
+  list-style-type: none;
 
-}
-
-.messages span{
+}*/
+/*
+.messages li{
     background-color: beige;
     border: 0px solid gray;
     margin: 10px;
     padding: 10px;
     margin-left: -40px;
-}
+}*/
 
 
 
@@ -207,7 +226,7 @@ body{
     height: 40px;
     background-color: #C49991;
     margin: -10px auto;
-    border: 1px solid gainsboro;
+    border: 1px solid white;
     color: white;
 /*    font-weight: bold;
 */    font-size: 0.75em;

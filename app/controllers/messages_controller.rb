@@ -29,7 +29,7 @@ class MessagesController < ApplicationController
        redirect_to room_path(@room)
     end
 
-end
+  end
 
 
 
